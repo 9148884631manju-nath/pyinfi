@@ -1,23 +1,14 @@
 from http.cookies import SimpleCookie
 from lib.read_json import rjson
 from lib.add_count_insession import add_count_insession
-import requests
-from http.cookies import SimpleCookie
-import uuid
-import urllib.parse
-import pprint
-
-SESSION_STORAGE = {}
-
 class PYINFI:
- def __init__(self,fl,path,headers,reqs,ses):
-  self.ss = requests.Session()
+ def __init__(self,fl,path,headers,reqs,sxs):
+  self.ss = sxs
   self.path=path
   self.headers=headers
   self.reqs=reqs
-  self.ses=ses
+  self.sxs=sxs
   self.fl = fl
-  self.ss={}
 
  def __str__(self):
   return self.html(self.fl)
@@ -62,7 +53,7 @@ class PYINFI:
  
  def viewsessions(self,v):
   ses = str(self.ss.get(v))
-  return "Sessions : "+ses
+  return ses
  
  def render_html(self,itm):
   res="" 
@@ -82,14 +73,12 @@ class PYINFI:
     case "a":
      res+='<a '+self.get_attr(v,["content"])+'>'+v.get("content")+'</a>'
     case "add_count_insession":
-     session = requests.Session()
-     res+=add_count_insession(session,v)
+     res+=add_count_insession(self.ss,v)
     case "block":
      res+=self.html(v+".json")
     case "content":
      res+=v
     case "setsession":
-     session = requests.Session()
      res+=self.setsession(v)
     case "viewsessions":
      res+=self.viewsessions(v)

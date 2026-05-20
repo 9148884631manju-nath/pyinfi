@@ -6,5 +6,11 @@ def add_count_insession(s,v):
  sqty=v.get("sqty")
  sadto=v.get("sadto")
  sact=v.get("sact")
- res=samn 
+ if sact=="yes":
+  tot = int(s.get(skey)[sid][samn]) * int(sqty)
+  s[sadto]=tot
+  res=str(tot)
+ else:
+  s[sadto]=sqty
+  res="0"
  return res
