@@ -1,3 +1,8 @@
+# PYINFI V 01 (2026 May) 
+# A Web Application Framework for Developers to develop N number of Micro Services, Addons, Tools etc...
+# No Need of Learning Core Python, a universal Language JSON is UI/UX and Backend
+# All Rights Reserved by Manjunath K, Code Designer 9343945143
+
 from http.cookies import SimpleCookie
 from lib.read_json import rjson
 from lib.add_count_insession import add_count_insession
