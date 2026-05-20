@@ -5,12 +5,9 @@ import uuid
 from lib.pyinfi import PYINFI
 SESSION_STORAGE = {}
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    
     def do_GET(self):
-        session_id = self.get_session_id()
-        if not session_id or session_id not in SESSION_STORAGE:
-            session_id = str(uuid.uuid4()) 
-            SESSION_STORAGE[session_id] = {}
-            mses = SESSION_STORAGE[session_id]
+        mses = SESSION_STORAGE
         # Send a 200 OK response
         self.send_response(200)
         parsed_url = urlparse(self.path)
