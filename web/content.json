@@ -1,0 +1,10 @@
+[
+ {
+ "class":"cont",
+ "content":"<h2>Requests Sessions and Headers</h2><hr/>",
+ "attr":{
+  "id":"block"
+ },
+ "block":"web/viewheaders"
+}
+]
