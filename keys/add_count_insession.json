@@ -1,0 +1,12 @@
+[
+ {
+ "add_count_insession":{
+  "skey":"prd",
+  "sid":"id",
+  "samn":"amount",
+  "sqty":"5",
+  "sadto":"total_amount",
+  "sact":"yes"
+ }
+}
+]

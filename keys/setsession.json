@@ -1,0 +1,9 @@
+[
+ {
+  "setsession":{
+   "sty":["set","set"],
+   "ses":["prd","total_amount"],
+   "sva":[{"id":{"amount":"200","qtry":"2"}},"0"]
+  }
+ }
+]

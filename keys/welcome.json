@@ -1,0 +1,19 @@
+[
+ {
+  "class":"heading",
+  "content":"<h1>Yeh ! man</h1><hr/> Welcome to the PY-INFI Framework",
+  "attr":{
+   "id":"mainheading"
+  }
+ },
+ {
+  "block":"web/a"
+ },
+ {
+  "block":"web/setsession"
+ },
+ {
+  "block":"web/viewsessions"
+ }
+ 
+]

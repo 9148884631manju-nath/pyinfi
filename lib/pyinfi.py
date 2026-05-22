@@ -2,13 +2,14 @@
 # A Web Application Framework for Developers to develop N number of Micro Services, Addons, Tools etc...
 # No Need of Learning Core Python, a universal Language JSON is UI/UX and Backend
 # All Rights Reserved by Manjunath K, Code Designer 9343945143
-
 from http.cookies import SimpleCookie
 from lib.read_json import rjson
 from lib.add_count_insession import add_count_insession
 class PYINFI:
- def __init__(self,fl,path,headers,reqs,sxs):
+ def __init__(self,pd,host,fl,path,headers,reqs,sxs):
   self.ss = sxs
+  self.pd = pd
+  self.host=host
   self.path=path
   self.headers=headers
   self.reqs=reqs
@@ -31,7 +32,11 @@ class PYINFI:
    if k in ary:
     res+=""
    else:
-    res+=k+'="'+v+'" '
+    match k:
+     case "src":
+      res+=k+'="'+v+'" '
+     case _:
+      res+=k+'="'+v+'" '
   return res
  
  def setsession(self,v):
@@ -60,6 +65,38 @@ class PYINFI:
   ses = str(self.ss.get(v))
   return ses
  
+ def add_delim(self,v):
+  res=""
+  content=v.get("content","")
+  splix=v.get("splix","")
+  adsplix=v.get("adsplix","")
+  dfor=v.get("dfor","")
+  delim=v.get("delim","")
+  vars=v.get("vars","")
+  theme=v.get("theme","")
+  if splix=="":
+   res=content.replace(dfor,delim)
+  else:
+   ex=content.split(splix)
+   for i,da in enumerate(ex):
+    res+=da.replace(dfor,delim)+adsplix
+   adlen = len(adsplix)
+  return res[:-adlen]
+
+ def a(self,v):
+  res='<a '+self.get_attr(v,["content"])+'>'+v.get("content")+'</a>'
+  return res
+ def img(self,v):
+  res='<img '+self.get_attr(v,["content"])+' />'
+  return res
+
+ def aimg(self,v):
+  res=""
+  ha=v.get("a")
+  hi=v.get("image")
+  res=self.img(hi)
+  return res
+
  def render_html(self,itm):
   res="" 
   attr=""
@@ -76,9 +113,13 @@ class PYINFI:
   for k,v in itm.items():
    match k:
     case "a":
-     res+='<a '+self.get_attr(v,["content"])+'>'+v.get("content")+'</a>'
+     res+=self.a(v)
     case "add_count_insession":
      res+=add_count_insession(self.ss,v)
+    case "add_delim":
+     res+=self.add_delim(v)
+    case "aimg":
+     res+=self.aimg(v)
     case "block":
      res+=self.html(v+".json")
     case "content":
