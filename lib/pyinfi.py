@@ -3,6 +3,7 @@
 # No Need of Learning Core Python, a universal Language JSON is UI/UX and Backend
 # All Rights Reserved by Manjunath K, Code Designer 9343945143
 from http.cookies import SimpleCookie
+import requests
 from lib.read_json import rjson
 from lib.add_count_insession import add_count_insession
 class PYINFI:
@@ -15,10 +16,14 @@ class PYINFI:
   self.reqs=reqs
   self.sxs=sxs
   self.fl = fl
+  conf="lib/config.json"
+  da = rjson(conf)
+  self.app_url = da["app_url"]
+  
 
  def __str__(self):
   return self.html(self.fl)
- 
+
  def html(self,f):
   da=rjson(f)
   res=""
@@ -34,7 +39,7 @@ class PYINFI:
    else:
     match k:
      case "src":
-      res+=k+'="'+v+'" '
+      res+=k+'="'+self.app_url+v+'" '
      case _:
       res+=k+'="'+v+'" '
   return res
@@ -94,9 +99,17 @@ class PYINFI:
   res=""
   ha=v.get("a")
   hi=v.get("image")
-  res=self.img(hi)
+  res='<a '+self.get_attr(ha,["content"])+'>'+'<img '+self.get_attr(hi,["content"])+' /> '+ha.get("content")+'</a>'
   return res
-
+ 
+ def apicall(self,v):
+  res=""
+  url=v.get("url")
+  xheaders = v.get("get")
+  xdata = dict(v.get("jd"))
+  res = requests.get(url, headers=xheaders, data=xdata)
+  return str(res)
+ 
  def render_html(self,itm):
   res="" 
   attr=""
@@ -120,6 +133,8 @@ class PYINFI:
      res+=self.add_delim(v)
     case "aimg":
      res+=self.aimg(v)
+    case "apicall":
+     res+=self.apicall(v)
     case "block":
      res+=self.html(v+".json")
     case "content":

@@ -1,0 +1,15 @@
+[
+ {
+  "apicall":{
+   "url":"https://srushti.in",
+   "jd":{
+    "name":"manju",
+    "mobile":"0000"
+   },
+   "get":{
+    "Content-Type":"application/text",
+    "Authorization":"Bearer Token"
+   }
+  }
+ }
+]

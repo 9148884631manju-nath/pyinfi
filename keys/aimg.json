@@ -3,10 +3,11 @@
   "aimg":{
    "a":{
     "href":"#",
+    "content":"PYINFI",
     "target":""
    },
    "image":{
-    "src":"images/logo.png",
+    "src":"/images/logo.png",
     "height":"250"
    }
   }
